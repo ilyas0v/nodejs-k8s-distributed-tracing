@@ -1,20 +1,24 @@
-import express, { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
+import { getExpressRouter } from '../../lib/express';
 
-export const serve = async () => {
-    const app = express();
-    const port = process.env.PORT || 3000;
+export const getRoutes = async () => {
+    const router = getExpressRouter();
 
-    app.get('/', (req: Request, res: Response) => {
+    router.get('/', (req: Request, res: Response) => {
         res.status(200).send('Hello from Service A index!');
     });
-    app.get('/1', (req: Request, res: Response) => {
+
+    router.get('/1', (req: Request, res: Response) => {
         res.status(200).send('Hello from Service A 1!');
     });
-    app.get('/2', (req: Request, res: Response) => {
+    
+    router.get('/2', (req: Request, res: Response) => {
         res.status(200).send('Hello from Service A 2!');
     });
 
-    app.listen(port, () => {
-        console.log(`Service A listening at ${port}`);
+    router.get('/1/1', (req: Request, res: Response) => {
+        res.status(200).send('Hello from Service A 1/1!');
     });
+
+    return router;
 };

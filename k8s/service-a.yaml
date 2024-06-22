@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-node-microservice
-        image: ilyas0v/my-node-microservice:6
+        image: ilyas0v/my-node-microservice:9
         imagePullPolicy: "Always"
         ports:
         - containerPort: 3000
