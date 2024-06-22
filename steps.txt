@@ -31,3 +31,14 @@ curl -H "host: foo.example.com" 34.79.166.13
 cleanup:
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.0/deploy/static/provider/cloud/deploy.yaml
 kubectl delete -f ./k8s/ingress.yaml
+
+
+
+RUN ZIPKIN:
+docker run -d -p 9411:9411 openzipkin/zipkin
+
+
+START SERVICES LOCALLY: 
+npm run dev-a
+npm run dev-b
+npm run dev-c
