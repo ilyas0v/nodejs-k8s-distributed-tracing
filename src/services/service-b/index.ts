@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getExpressRouter } from '../../lib/express';
+import { callService } from '../../lib/http';
 
 export const getRoutes = () => {
     const router = getExpressRouter();
@@ -10,7 +11,14 @@ export const getRoutes = () => {
         });
     });
 
-    router.get('/1', (req: Request, res: Response) => {
+    router.get('/1', async (req: Request, res: Response) => {
+
+        // await callService({
+        //     serviceName: 'service-c',
+        //     method: 'GET',
+        //     url: '/1'
+        // });
+
         res.json({
             message: 'Hello from Service B 1!'
         });

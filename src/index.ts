@@ -1,7 +1,13 @@
 import { errorHandler, getExpressApp } from "./lib/express";
 import dotenv from 'dotenv';
-
+import apm from 'elastic-apm-node';
 dotenv.config();
+
+const apmAgent = apm.start({
+    serviceName: process.env.SERVICE_TYPE || 'unknown-service',
+    serverUrl: process.env.ELASTIC_APM_SERVER_URL || 'http://localhost:8200',
+    environment: process.env.APP_ENV || 'production',
+});
 
 const start = async () => {
     const serviceName = process.env.SERVICE_TYPE;

@@ -28,7 +28,6 @@ export const httpRequest = async ({ serviceName, method, url, data, headers = { 
         }
         return await response.json(); // Assuming the response is JSON
     } catch (error) {
-        console.error('HTTP Request Failed:', error);
         throw error;
     }
 };

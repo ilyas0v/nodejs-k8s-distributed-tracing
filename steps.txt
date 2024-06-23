@@ -34,9 +34,11 @@ kubectl delete -f ./k8s/ingress.yaml
 
 
 
-RUN ZIPKIN:
-docker run -d -p 9411:9411 openzipkin/zipkin
+RUN ELASTIC APM on Localhost:
+cd ./elastic 
+docker-compose up -d
 
+go to http://localhost:5601/app/apm to access kibana
 
 START SERVICES LOCALLY: 
 npm run dev-a

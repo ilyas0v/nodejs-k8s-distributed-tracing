@@ -33,14 +33,14 @@ export const getRoutes = async () => {
         await callService({
             serviceName: 'service-c',
             method: 'GET',
-            url: '/1'
+            url: '/1/1'
         });
 
-        await callService({
-            serviceName: 'service-c',
-            method: 'GET',
-            url: '/2'
-        });
+        // await callService({
+        //     serviceName: 'service-c',
+        //     method: 'GET',
+        //     url: '/2'
+        // });
 
         const result = {
             b,

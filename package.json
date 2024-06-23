@@ -10,6 +10,7 @@
         "dev-c": "cross-env SERVICE_TYPE=service-c PORT=3003 nodemon --exec ts-node src/index.ts"
     },
     "dependencies": {
+        "elastic-apm-node": "^4.7.0",
         "express": "^4.17.1",
         "node-fetch": "^2.6.0"
     },
