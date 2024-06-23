@@ -1,10 +1,7 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import { getExpressRouter } from '../../lib/express';
-import { callService } from '../../lib/http';
-import { Tracer } from 'zipkin';
-import { createFetcher, getUrlContents } from '../../lib/zipkin';
 
-export const getRoutes = (tracer: Tracer) => {
+export const getRoutes = () => {
     const router = getExpressRouter();
 
     router.get('/', (req: Request, res: Response) => {
