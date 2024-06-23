@@ -22,13 +22,13 @@ export const httpRequest = async ({ serviceName, method, url, data, headers = { 
     };
 
     try {
-        // const tracer = Zipkin.getTracer();
         const tracer = Zipkin.getTracer(serviceName, config['zipkin-base-url'] ?? '');
-        console.log(serviceName, tracer.id.traceId);
         const zipkinFetch = wrapFetch(fetch, { tracer, remoteServiceName: serviceName });
         const response = await zipkinFetch(url, options);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const json = await response.json();
+            const message = json.message || json.error || 'Error from service: ' + serviceName;
+            throw new Error(message);
         }
         return await response.json(); // Assuming the response is JSON
     } catch (error) {

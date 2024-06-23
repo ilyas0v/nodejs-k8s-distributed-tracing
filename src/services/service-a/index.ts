@@ -1,30 +1,53 @@
 import { Request, Response, Router } from 'express';
-import { getExpressRouter } from '../../lib/express';
+import { getExpressRouter, routeWrapper } from '../../lib/express';
 import { callService } from '../../lib/http';
 
 export const getRoutes = async () => {
     const router = getExpressRouter();
 
-    router.get('/', async (req: Request, res: Response) => {
+    router.get('/', routeWrapper(async (data: any) => {
         const b = await callService({
             serviceName: 'service-b',
             method: 'GET',
             url: '/1'
         });
 
-        const c = await callService({
+        await callService({
             serviceName: 'service-c',
             method: 'GET',
             url: '/1'
         });
 
+        await callService({
+            serviceName: 'service-c',
+            method: 'GET',
+            url: '/1'
+        });
+
+        await callService({
+            serviceName: 'service-c',
+            method: 'GET',
+            url: '/1'
+        });
+
+        await callService({
+            serviceName: 'service-c',
+            method: 'GET',
+            url: '/1'
+        });
+
+        await callService({
+            serviceName: 'service-c',
+            method: 'GET',
+            url: '/2'
+        });
+
         const result = {
             b,
-            c
         }
 
-        res.json(result);
-    });
+        return result;
+    }));
 
     router.get('/1', (req: Request, res: Response) => {
         res.status(200).send('Hello from Service A 1!');

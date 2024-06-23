@@ -17,12 +17,12 @@ export const getRoutes = () => {
                 message: 'Hello from Service C 1!'
             });
         }, 10);
+
+        //throw new Error('Error from Service C 1');
     });
 
     router.get('/2', (req: Request, res: Response) => {
-        res.json({
-            message: 'Hello from Service C 2!'
-        });
+        throw new Error('Error from Service C 2');
     });
 
     router.get('/1/1', (req: Request, res: Response) => {

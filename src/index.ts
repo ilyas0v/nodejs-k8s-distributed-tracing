@@ -1,4 +1,4 @@
-import { getExpressApp } from "./lib/express";
+import { errorHandler, getExpressApp } from "./lib/express";
 import dotenv from 'dotenv';
 import { expressMiddleware } from 'zipkin-instrumentation-express';
 import { Zipkin } from "./lib/zipkin";
@@ -28,6 +28,10 @@ const start = async () => {
         const service = await import(`./services/${serviceName}/index`);
         const router = await service.getRoutes();
         app.use('/', router);
+
+        // APply error handling middleware
+        app.use(errorHandler);
+
         app.listen(port, () => {
             console.log(`${serviceName} listening at ${port}`);
         });
