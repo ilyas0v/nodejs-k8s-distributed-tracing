@@ -6,6 +6,7 @@ for building and pushing images, check build.bat
 
 kubectl apply -f ./k8s/service-a.yaml
 kubectl apply -f ./k8s/service-b.yaml
+kubectl apply -f ./k8s/service-c.yaml
 
 
 check:
