@@ -42,3 +42,6 @@ START SERVICES LOCALLY:
 npm run dev-a
 npm run dev-b
 npm run dev-c
+
+create deployment & servoce for zipkin:
+kubectl apply -f ./zipkin/zipkin.yaml

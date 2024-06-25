@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+  namespace: nodejs-app
+data:
+  SERVICE_A_ENDPOINT: "http://service-a"
+  SERVICE_B_ENDPOINT: "http://service-b"
+  SERVICE_C_ENDPOINT: "http://service-c"
+  ELASTIC_APM_SERVER_URL: "http://apm-server:8200"
+  ZIPKIN_BASE_URL: "http://zipkin:9411"
