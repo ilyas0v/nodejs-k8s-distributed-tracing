@@ -6,6 +6,7 @@ for building and pushing images, check build.bat
 
 kubectl apply -f ./k8s/service-a.yaml
 kubectl apply -f ./k8s/service-b.yaml
+kubectl apply -f ./k8s/service-c.yaml
 
 
 check:
@@ -25,7 +26,7 @@ kubectl describe ingress -n nodejs-app
 
 
 testing:
-curl -H "host: foo.example.com" 34.79.166.13
+curl -H "host: foo.example.com" 34.79.44.32
 
 
 cleanup:

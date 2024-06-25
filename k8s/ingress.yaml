@@ -31,3 +31,10 @@ spec:
             name: service-b
             port:
               number: 80
+      - path: /service-c(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: service-c
+            port:
+              number: 80
