@@ -6,7 +6,41 @@ export const getRoutes = async () => {
     const router = getExpressRouter();
 
     router.get('/', routeWrapper(async (data: any) => {
-        const b = await callService({
+        await callService({
+            serviceName: 'service-b',
+            method: 'GET',
+            url: '/1'
+        });
+
+        await callService({
+            serviceName: 'service-c',
+            method: 'GET',
+            url: '/1'
+        });
+
+        await callService({
+            serviceName: 'service-b',
+            method: 'GET',
+            url: '/1'
+        });
+
+        await callService({
+            serviceName: 'service-c',
+            method: 'GET',
+            url: '/1'
+        });
+
+        await callService({
+            serviceName: 'service-b',
+            method: 'GET',
+            url: '/1'
+        });
+
+        return { success: true };
+    }));
+
+    router.get('/routeWithError', routeWrapper(async (data: any) => {
+        await callService({
             serviceName: 'service-b',
             method: 'GET',
             url: '/1'
@@ -21,32 +55,28 @@ export const getRoutes = async () => {
         await callService({
             serviceName: 'service-c',
             method: 'GET',
-            url: '/1'
+            url: '/routeWithError'
+        });
+    }));
+
+    router.get('/routeWithLongOperation', routeWrapper(async (data: any) => {
+        await callService({
+            serviceName: 'service-c',
+            method: 'GET',
+            url: '/routeWithLongOperation'
         });
 
         await callService({
-            serviceName: 'service-c',
+            serviceName: 'service-b',
             method: 'GET',
             url: '/1'
         });
 
         await callService({
-            serviceName: 'service-c',
+            serviceName: 'service-b',
             method: 'GET',
             url: '/1/1'
         });
-
-        // await callService({
-        //     serviceName: 'service-c',
-        //     method: 'GET',
-        //     url: '/2'
-        // });
-
-        const result = {
-            b,
-        }
-
-        return result;
     }));
 
     router.get('/1', (req: Request, res: Response) => {

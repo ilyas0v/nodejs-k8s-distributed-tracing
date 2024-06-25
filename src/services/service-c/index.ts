@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import { getExpressRouter } from '../../lib/express';
-import { callService } from '../../lib/http';
+import { getExpressRouter, routeWrapper } from '../../lib/express';
+import { sleep } from '../../lib/utils';
 
 export const getRoutes = () => {
     const router = getExpressRouter();
@@ -11,8 +11,7 @@ export const getRoutes = () => {
         });
     });
 
-    router.get('/1', async (req: Request, res: Response) => {
-
+    router.get('/1', (req: Request, res: Response) => {
         // sleep for 1 second
         setTimeout(() => {
             res.json({
@@ -23,18 +22,16 @@ export const getRoutes = () => {
         //throw new Error('Error from Service C 1');
     });
 
-    router.get('/2', (req: Request, res: Response) => {
+    router.get('/routeWithError', (req: Request, res: Response) => {
         throw new Error('Error from Service C 2');
     });
 
-    router.get('/1/1', async (req: Request, res: Response) => {
+    router.get('/routeWithLongOperation', routeWrapper(async (data: any) => {
+        await sleep(1000);
+        return { success: true };
+    }));
 
-        await callService({
-            serviceName: 'service-b',
-            method: 'GET',
-            url: '/1/1'
-        });
-
+    router.get('/1/1', (req: Request, res: Response) => {
         res.json({
             message: 'Hello from Service C 1/1!'
         });

@@ -45,3 +45,10 @@ START SERVICES LOCALLY:
 npm run dev-a
 npm run dev-b
 npm run dev-c
+
+
+TEST with different routes: 
+
+curl -H "host: foo.example.com" 34.79.44.32/service-a/
+curl -H "host: foo.example.com" 34.79.44.32/service-a/routeWithLongOperation
+curl -H "host: foo.example.com" 34.79.44.32/service-a/routeWithError
