@@ -19,8 +19,15 @@ const start = async () => {
 
     console.log(`Serving ${serviceName}...`)    
 
+    // Uncomment if use Zipkin:
+    // const zipkinBaseUrl = process.env.ZIPKIN_BASE_URL || 'http://localhost:9411';
+    // const tracer = Zipkin.getTracer(serviceName, zipkinBaseUrl);
+
     try {
         const app = getExpressApp();
+
+        // Uncomment if use Zipkin:
+        // app.use(expressMiddleware({ tracer }));
 
         const service = await import(`./services/${serviceName}/index`);
         const router = await service.getRoutes();

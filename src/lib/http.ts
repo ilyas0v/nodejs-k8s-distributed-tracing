@@ -20,6 +20,10 @@ export const httpRequest = async ({ serviceName, method, url, data, headers = { 
     };
 
     try {
+        // Uncomment if using Zipkin:
+        // const tracer = Zipkin.getTracer(serviceName, config['zipkin-base-url'] ?? '');
+        // const zipkinFetch = wrapFetch(fetch, { tracer, remoteServiceName: serviceName });
+        // const response = await zipkinFetch(url, options);
         const response = await fetch(url, options);
         if (!response.ok) {
             const json = await response.json();
