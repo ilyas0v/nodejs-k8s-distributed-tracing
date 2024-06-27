@@ -1,5 +1,9 @@
 # Sample Node.js Microservices Application with Elastic APM and Zipkin integrated
 
+This repository aims to create a cloud-native application that implements 2 different distributed tracing tools: Elastic APM and Zipkin, and to compare their performance and features.
+
+Here is the basic architecture of the setup:
+
 ![image](https://github.com/ilyas0v/gke-nodejs-microservices/assets/14857161/22d90ecd-7539-4eac-95ae-56f7e40f8568)
 
 ## Project Structure
@@ -57,3 +61,13 @@ curl ${APP_HOST}/service-a/routeWithError
 | **Traces Overview**  | ![tracing overview](https://github.com/ilyas0v/gke-nodejs-microservices/assets/14857161/d138c0e0-6240-45b6-ba3a-f7eab1cc47d9) |
 | **Timeline View**   | ![timeline normal](https://github.com/ilyas0v/gke-nodejs-microservices/assets/14857161/54b8b914-9bc2-46eb-b02c-34bebeae7f27) |
 
+
+
+## Simple benchmarking to test the impact of each tool on application latency
+The Autocannon tool was used to run load testing for 30 seconds with 10 connections. Here are some insights:
+
+| Metric              | Without tools | With Zipkin   | With Elastic APM |
+|---------------------|---------------|---------------|------------------|
+| **Average latency** | 204.38 ms     | 242.56 ms     | 277.77 ms        |
+| **Requests per sec**| 84.7          | 54.6          | 43.3             |
+| **Bytes/sec**       | 19.3 kb/sec   | 12.4 kb/sec   | 9.87 kb/sec      |
