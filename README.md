@@ -66,6 +66,13 @@ curl ${APP_HOST}/service-a/routeWithError
 | **Timeline View**   | ![timeline normal](https://github.com/ilyas0v/gke-nodejs-microservices/assets/14857161/54b8b914-9bc2-46eb-b02c-34bebeae7f27) |
 
 
+## Check Zipkin dashboard -> Traces, Dependencies, Timeline
+
+| Page            | Image                                                                 |
+|-----------------------|----------------------------------------------------------------------|
+| **Dependencies Overview** | ![image](https://github.com/ilyas0v/nodejs-k8s-distributed-tracing/assets/14857161/e6d423a7-1a50-4efa-9cd2-ce0977bfecca) |
+| **Traces Overview**  | ![find traces](https://github.com/ilyas0v/nodejs-k8s-distributed-tracing/assets/14857161/ca00302a-6ed5-4874-a9a6-894110364709) |
+| **Timeline View**   | ![timeline normal](https://github.com/ilyas0v/nodejs-k8s-distributed-tracing/assets/14857161/64754fed-acc9-47da-ba1e-93254907c18b) |
 
 ## Simple benchmarking to test the impact of each tool on application latency
 The Autocannon tool was used to run load testing for 30 seconds with 10 connections. Here are some insights:
