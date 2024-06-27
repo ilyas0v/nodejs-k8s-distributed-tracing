@@ -1,10 +1,8 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import { getExpressRouter } from '../../lib/express';
 import { callService } from '../../lib/http';
-import { Tracer } from 'zipkin';
-import { createFetcher, getUrlContents } from '../../lib/zipkin';
 
-export const getRoutes = (tracer: Tracer) => {
+export const getRoutes = () => {
     const router = getExpressRouter();
 
     router.get('/', (req: Request, res: Response) => {
@@ -13,7 +11,14 @@ export const getRoutes = (tracer: Tracer) => {
         });
     });
 
-    router.get('/1', (req: Request, res: Response) => {
+    router.get('/1', async (req: Request, res: Response) => {
+
+        // await callService({
+        //     serviceName: 'service-c',
+        //     method: 'GET',
+        //     url: '/1'
+        // });
+
         res.json({
             message: 'Hello from Service B 1!'
         });

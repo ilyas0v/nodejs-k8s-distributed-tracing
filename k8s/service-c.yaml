@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-a
+  name: service-c
   namespace: nodejs-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: service-a
+      app: service-c
   template:
     metadata:
       labels:
-        app: service-a
+        app: service-c
     spec:
       containers:
       - name: my-node-microservice
@@ -21,7 +21,7 @@ spec:
         - containerPort: 3000
         env:
         - name: SERVICE_TYPE
-          value: "service-a"
+          value: "service-c"
         envFrom:
         - configMapRef:
             name: env-config
@@ -36,7 +36,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-a
+  name: service-c
   namespace: nodejs-app
 spec:
   type: NodePort
@@ -44,4 +44,4 @@ spec:
     - port: 80
       targetPort: 3000
   selector:
-    app: service-a
+    app: service-c

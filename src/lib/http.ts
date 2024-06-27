@@ -1,7 +1,5 @@
 import fetch, { RequestInit } from 'node-fetch';
 import { ServiceName, config } from './config';
-import wrapFetch from 'zipkin-instrumentation-fetch';
-import { Zipkin } from './zipkin';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -22,9 +20,7 @@ export const httpRequest = async ({ serviceName, method, url, data, headers = { 
     };
 
     try {
-        const tracer = Zipkin.getTracer(serviceName, config['zipkin-base-url'] ?? '');
-        const zipkinFetch = wrapFetch(fetch, { tracer, remoteServiceName: serviceName });
-        const response = await zipkinFetch(url, options);
+        const response = await fetch(url, options);
         if (!response.ok) {
             const json = await response.json();
             const message = json.message || json.error || 'Error from service: ' + serviceName;
@@ -32,7 +28,6 @@ export const httpRequest = async ({ serviceName, method, url, data, headers = { 
         }
         return await response.json(); // Assuming the response is JSON
     } catch (error) {
-        console.error('HTTP Request Failed:', error);
         throw error;
     }
 };
