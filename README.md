@@ -42,6 +42,10 @@ kubectl apply -f ./elastic/apm-server.yaml
 kubectl apply -f ./elastic/kibana.yaml
 ```
 
+- configure the Zipkin server
+```
+kubectl apply -f ./zipkin/zipkin.yaml
+```
 
 ##### After doing these, the application services, and elastic services will be up and running. Check them by their ports accordingly. The Elastic APM will be accessible via Kibana dashboard.
 
