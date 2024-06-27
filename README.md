@@ -21,6 +21,9 @@
 
 `kubectl apply -f ./k8s/service-c.yaml`
 
+- set the config variables:
+`kubectl apply -f ./k8s/config.yaml`
+
 - configure the ingress to combine services in a load balancer:
 
 `kubectl apply -f ./k8s/ingress.yaml`
